@@ -70,7 +70,7 @@ public class UserController extends BaseController {
 //    @CrossOrigin(origins = "http://localhost:8080")
     public Result showUser(int id) throws Exception {
         Result result=new Result();
-        User han=new User();
+        User han=userService.getUserById(id);
         han.setId(id);
 //        han.setUpdateByEmail(1);
 //        han.setFullName(Thread.currentThread().getName());
