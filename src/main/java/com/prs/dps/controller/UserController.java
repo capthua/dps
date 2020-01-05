@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class UserController extends BaseController {
     @RequestMapping("/showUser")
     @ResponseBody
 //    @CrossOrigin(origins = "http://localhost:8080")
-    public Result showUser(int id) throws Exception {
+    public Result showUser(int id,HttpServletResponse response) throws Exception {
         Result result=new Result();
         User han=userService.getUserById(id);
         han.setId(id);
@@ -82,6 +83,7 @@ public class UserController extends BaseController {
 //        han.setFullName("hanshoahua");
 //        result.setData(han);
 //        userService.updateUser(han);
+        response.addCookie(new Cookie("name","shaohua"));
         result.setResultCode(Constants.SUCCESS);
         return result;
     }

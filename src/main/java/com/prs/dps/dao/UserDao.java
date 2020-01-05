@@ -16,4 +16,9 @@ public interface UserDao {
     int saveUser(User user);
 
     int updateUser(User user);
+
+    List<User> listUsers(User param);
+    List<User> listUser4Transaction(User param);
+
+    int add(User user);
 }

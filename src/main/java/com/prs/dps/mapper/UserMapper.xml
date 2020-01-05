@@ -12,9 +12,9 @@
         <id property="id" column="id" />
         <result property="username" column="username"/>
         <result property="password" column="password"/>
-        <result property="fullName" column="fullName"/>
+        <result property="fullName" column="full_name"/>
         <result property="email" column="email"/>
-        <result property="updateByEmail" column="updateByEmail"/>
+        <result property="updateByEmail" column="update_by_email"/>
     </resultMap>
 
     <!--<select id="getUserById" resultMap="userResultMap" flushCache="true">-->
@@ -39,17 +39,29 @@
                 password=#{password},
             </if>
             <if test="fullName!=null">
-                fullName=#{fullName},
+                full_name=#{fullName},
             </if>
             <if test="email!=null">
                 email=#{email},
             </if>
             <if test="updateByEmail!=null">
-                updateByEmail=#{updateByEmail}
+                update_by_email=#{updateByEmail}
             </if>
         </set>
         where id=#{id}
     </update>
+
+    <select id="listUsers" resultMap="userResultMap">
+        select * from user where update_by_email
+    </select>
+
+    <select id="listUser4Transaction" resultMap="userResultMap">
+        select * from user where update_by_email between 0 and 2
+    </select>
+
+    <insert id="add" useGeneratedKeys="true">
+        insert into user(username,password,full_name,email,update_by_email) value (#{username},#{password},#{fullName},#{email},#{updateByEmail})
+    </insert>
 
 
 </mapper>

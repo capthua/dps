@@ -31,10 +31,14 @@
         <property name="configLocation" value="/WEB-INF/config/mybatis/mybatis-configuration.xml"/>
     </bean>
 
+    <!--    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">-->
+    <!--        <constructor-arg index="0">-->
+    <!--            <ref bean="sqlSessionFactory"/>-->
+    <!--        </constructor-arg>-->
+    <!--    </bean>-->
+    <!--    用下面的方式-->
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0">
-            <ref bean="sqlSessionFactory"/>
-        </constructor-arg>
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
